@@ -1,0 +1,96 @@
+.wrapper {
+  display: flex;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 3;
+  height: 100%;
+  background-color: #f2e3db;
+  padding: 0 20px;
+}
+
+.letter {
+  text-transform: uppercase;
+  font-family: Arial Black;
+  font-size: 100;
+  color: #e86a33;
+  transition: 0.2s all;
+}
+
+.letter.resolved {
+  color: #41644a;
+}
+
+.letter.resolved + .letter:not(.resolved),
+.letter:first-child:not(.resolved) {
+  font-size: 130px;
+}
+
+.image {
+  flex: 2;
+  background-size: cover;
+  background-position: right;
+}
+
+.play-again-layer {
+  display: none;
+}
+
+.play-again-layer.active {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("fireworks.gif");
+  background-image: url(fireworks.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Numbers game */
+
+.item {
+  width: 150px;
+  height: 150px;
+  background-color: #e86a33;
+  border-radius: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 72px;
+  font-family: Arial Black;
+}
+
+.item.resolved {
+  background-color: #41644a;
+}
+
+.wrapper--numbers {
+  flex-direction: column;
+}
+
+.wrapper--numbers .content {
+  flex: 3;
+}
+
+.wrapper--numbers .number {
+  flex: 1;
+  font-family: Arial Black;
+  font-size: 360;
+  color: #e86a33;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2e3db;
+}
