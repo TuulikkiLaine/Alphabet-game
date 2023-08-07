@@ -113,6 +113,8 @@ const playAgainElement = document.getElementById("js-play-again");
 const applause = new Audio("applause.mp3");
 
 const init = () => {
+  document.getElementById("js-content").focus();
+
   playAgainElement.classList.remove("active");
   applause.pause();
   applause.currentTime = 0;
@@ -132,7 +134,12 @@ const init = () => {
   let currentKeyIndex = 0;
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === letters[currentKeyIndex]) {
+    if (e.key == "Enter" && !gameIsActive) {
+      init();
+    } else if (
+      currentKeyIndex < letters.length &&
+      e.key.toLowerCase() === letters[currentKeyIndex].toLowerCase()
+    ) {
       document
         .querySelector(`.letter:nth-child(${currentKeyIndex + 1})`)
         .classList.add("resolved");
@@ -142,10 +149,6 @@ const init = () => {
         playAgainElement.classList.add("active");
         applause.play();
       }
-    }
-
-    if (e.key == "Enter" && !gameIsActive) {
-      init();
     }
   });
 };
