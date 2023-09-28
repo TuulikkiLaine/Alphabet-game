@@ -38,6 +38,10 @@
   background-position: right;
 }
 
+.images-hidden .image {
+  display: none;
+}
+
 .play-again-layer {
   display: none;
 }
@@ -53,6 +57,22 @@
   background-image: url(fireworks.gif);
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.button {
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  font-family: Arial;
+  background-color: #41644a;
+  box-shadow: none;
+  border: none;
+  color: #fff;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2;
 }
 
 /* Numbers game */

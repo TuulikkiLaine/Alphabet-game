@@ -112,6 +112,11 @@ const imageElement = document.getElementById("js-image");
 const playAgainElement = document.getElementById("js-play-again");
 const applause = new Audio("applause.mp3");
 
+document.getElementById("js-hide-images").addEventListener("click", (e) => {
+  e.target.blur();
+  document.body.classList.toggle("images-hidden");
+});
+
 const init = () => {
   document.getElementById("js-content").focus();
 
