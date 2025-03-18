@@ -4,6 +4,7 @@ const words = [
   "ankka",
   "apina",
   "asuntoauto",
+  "aurinko",
   "auto",
   "banaani",
   "bussi",
@@ -54,6 +55,7 @@ const wordsEnglish = [
   "duck",
   "monkey",
   "van",
+  "sun",
   "car",
   "banana",
   "bus",
@@ -111,10 +113,20 @@ const contentElement = document.getElementById("js-content");
 const imageElement = document.getElementById("js-image");
 const playAgainElement = document.getElementById("js-play-again");
 const applause = new Audio("applause.mp3");
+let gamemode = "images_visible";
+const gameModeToggler = document.getElementById("js-hide-images");
 
-document.getElementById("js-hide-images").addEventListener("click", (e) => {
+gameModeToggler.addEventListener("click", (e) => {
   e.target.blur();
-  document.body.classList.toggle("images-hidden");
+  if (gamemode === "images_hidden") {
+    gamemode = "images_visible";
+    document.body.classList.remove("images-hidden");
+    gameModeToggler.innerHTML = "Piilota kuvat";
+  } else {
+    gamemode = "images_hidden";
+    document.body.classList.add("images-hidden");
+    gameModeToggler.innerHTML = "Näytä kuvat";
+  }
 });
 
 const init = () => {
@@ -124,6 +136,9 @@ const init = () => {
   applause.pause();
   applause.currentTime = 0;
   gameIsActive = true;
+  if (gamemode === "images_hidden") {
+    document.body.classList.add("images-hidden");
+  }
 
   let currentWord = wordObjects[Math.floor(Math.random() * words.length)];
   const letters =
@@ -152,6 +167,7 @@ const init = () => {
       if (currentKeyIndex >= letters.length) {
         gameIsActive = false;
         playAgainElement.classList.add("active");
+        document.body.classList.remove("images-hidden");
         applause.play();
       }
     }
