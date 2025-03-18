@@ -121,11 +121,11 @@ gameModeToggler.addEventListener("click", (e) => {
   if (gamemode === "images_hidden") {
     gamemode = "images_visible";
     document.body.classList.remove("images-hidden");
-    gameModeToggler.innerHTML = "Piilota kuvat";
+    gameModeToggler.innerHTML = lang === "en" ? "Hide images" : "Piilota kuvat";
   } else {
     gamemode = "images_hidden";
     document.body.classList.add("images-hidden");
-    gameModeToggler.innerHTML = "Näytä kuvat";
+    gameModeToggler.innerHTML = lang === "en" ? "Show images" : "Näytä kuvat";
   }
 });
 
