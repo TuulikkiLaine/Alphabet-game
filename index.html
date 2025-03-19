@@ -5,7 +5,23 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <button class="button" id="js-hide-images">Piilota kuvat</button>
+    <div id="js-menu-toggler" class="menu-toggler">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu">
+      <h4>Vaikeustaso:</h5>
+      <button class="button js-game-mode-toggler active" data-mode="default">
+        Helppo (näytä sana ja kuva)
+      </button>
+      <button class="button js-game-mode-toggler" data-mode="images-hidden">
+        Keskivaikea (näytä vain sana)
+      </button>
+      <button class="button js-game-mode-toggler" data-mode="text-hidden">
+        Edistynyt (näytä vain kuva ja sanan pituus)
+      </button>
+    </div>
     <div class="wrapper">
       <div class="content" id="js-content"></div>
       <div class="image" id="js-image"></div>

@@ -113,30 +113,35 @@ const contentElement = document.getElementById("js-content");
 const imageElement = document.getElementById("js-image");
 const playAgainElement = document.getElementById("js-play-again");
 const applause = new Audio("applause.mp3");
-let gamemode = "images_visible";
-const gameModeToggler = document.getElementById("js-hide-images");
 
-gameModeToggler.addEventListener("click", (e) => {
-  e.target.blur();
-  if (gamemode === "images_hidden") {
-    gamemode = "images_visible";
-    document.body.classList.remove("images-hidden");
-    gameModeToggler.innerHTML = lang === "en" ? "Hide images" : "Piilota kuvat";
-  } else {
-    gamemode = "images_hidden";
-    document.body.classList.add("images-hidden");
-    gameModeToggler.innerHTML = lang === "en" ? "Show images" : "Näytä kuvat";
-  }
+const menuToggler = document.getElementById("js-menu-toggler");
+menuToggler.addEventListener("click", (e) => {
+  menuToggler.classList.toggle("menu-open");
+});
+
+let gamemode = "default";
+
+const gameModeTogglers = document.querySelectorAll(".js-game-mode-toggler");
+gameModeTogglers.forEach((toggler) => {
+  toggler.addEventListener("click", (e) => {
+    gamemode = e.target.dataset.mode;
+    document.body.classList.remove(...document.body.classList);
+    document.body.classList.add(gamemode);
+    gameModeTogglers.forEach((toggler) => {
+      toggler.classList.remove("active");
+    });
+    e.target.classList.add("active");
+  });
 });
 
 const init = () => {
+  console.log(gamemode);
   document.getElementById("js-content").focus();
-
   playAgainElement.classList.remove("active");
   applause.pause();
   applause.currentTime = 0;
   gameIsActive = true;
-  if (gamemode === "images_hidden") {
+  if (gamemode === "images-hidden") {
     document.body.classList.add("images-hidden");
   }
 
@@ -154,6 +159,7 @@ const init = () => {
   let currentKeyIndex = 0;
 
   document.addEventListener("keydown", (e) => {
+    menuToggler.classList.remove("menu-open");
     if (e.key == "Enter" && !gameIsActive) {
       init();
     } else if (

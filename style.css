@@ -1,3 +1,7 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .wrapper {
   display: flex;
   height: 100%;
@@ -18,7 +22,7 @@
 .letter {
   text-transform: uppercase;
   font-family: Arial Black;
-  font-size: 100;
+  font-size: 100px;
   color: #e86a33;
   transition: 0.2s all;
 }
@@ -30,6 +34,33 @@
 .letter.resolved + .letter:not(.resolved),
 .letter:first-child:not(.resolved) {
   font-size: 130px;
+}
+
+.text-hidden .letter {
+  font-size: 0 !important;
+  height: 100px;
+  width: 75px;
+  position: relative;
+  margin-right: 5px;
+  &::after {
+    display: block;
+    content: "_";
+    width: 65px;
+    height: 2px;
+    background: #41644a;
+    position: absolute;
+    bottom: -15px;
+    left: 10px;
+  }
+}
+
+.text-hidden .letter.resolved {
+  font-size: 100px !important;
+  width: auto;
+  margin-right: 0;
+  &::after {
+    display: none;
+  }
 }
 
 .image {
@@ -57,22 +88,23 @@
   background-image: url(fireworks.gif);
   background-size: cover;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .button {
-  position: absolute;
-  left: 25px;
-  top: 25px;
-  font-family: Arial;
   background-color: #41644a;
   box-shadow: none;
   border: none;
   color: #fff;
-  padding: 5px 10px;
-  text-transform: uppercase;
-  font-weight: bold;
+  padding: 10px 16px;
   cursor: pointer;
   z-index: 2;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.button.active {
+  background-color: #e86a33;
 }
 
 /* Numbers game */
@@ -113,4 +145,46 @@
   justify-content: center;
   align-items: center;
   background-color: #f2e3db;
+}
+
+.menu-toggler {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  z-index: 2;
+  > span {
+    display: inline-block;
+    margin-bottom: 6px;
+    cursor: pointer;
+    background-color: #41644a;
+    width: 100%;
+    height: 3px;
+    transition: 0.2s all ease-in-out;
+  }
+}
+
+.menu {
+  z-index: 2;
+  display: none;
+  position: absolute;
+  left: 25px;
+  top: 50px;
+  flex-direction: column;
+}
+
+.menu-open + .menu {
+  display: flex;
+}
+
+.menu-open.menu-toggler span:nth-child(1) {
+  transform: rotate(45deg) translateX(5px) translateY(11px);
+}
+
+.menu-open.menu-toggler span:nth-child(2) {
+  transform: rotate(135deg) translateX(5px);
+}
+
+.menu-open.menu-toggler span:nth-child(3) {
+  display: none;
 }

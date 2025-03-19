@@ -5,7 +5,23 @@
     <meta charset="UTF-8" />
   </head>
   <body>
-    <button class="button" id="js-hide-images">Hide images</button>
+    <div id="js-menu-toggler" class="menu-toggler">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu">
+      <h4>Game mode:</h5>
+      <button class="button js-game-mode-toggler active" data-mode="default">
+        Easy (show word and image)
+      </button>
+      <button class="button js-game-mode-toggler" data-mode="images-hidden">
+        Medium (show only word)
+      </button>
+      <button class="button js-game-mode-toggler" data-mode="text-hidden">
+        Hard (show only image and word length)
+      </button>
+    </div>
     <div class="wrapper">
       <div class="content" id="js-content"></div>
       <div class="image" id="js-image"></div>
